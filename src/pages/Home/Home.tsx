@@ -3,9 +3,9 @@ import { useState } from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import Searchbar from '../../components/Searchbar/Searchbar';
 import DocumentsView from '../../components/DocumentsView/DocumentsView';
-import { searchDocuments } from '../../api/documents';
 import Summary from '../../components/Summary/Summary';
 import type { TLegalDocument } from '../../types/types';
+
 
 const Home = () => {
     const [searchResults, setSearchResults] = useState<TLegalDocument[]>([]);
@@ -15,13 +15,23 @@ const Home = () => {
     const [error, setError] = useState<string | null>(null);
     const [hasSearched, setHasSearched] = useState(false);
 
-    const handleSearch = (query: string) => {
-        setHasSearched(true);
-        const results = searchDocuments(query);
-        setSearchResults(results);
-        setSelectedDoc(null);
-        setSummary(null);
-        setError(null);
+    const handleSearch = async (query: string) => {
+        try {
+            const response = await fetch(`http://localhost:8000/search?query=${query}`)
+            if (!response.ok) {
+                setSearchResults([]);
+                return;
+            }
+            const results = await response.json();
+            console.log(results)
+            setHasSearched(true);
+            setSearchResults(results);
+            setSelectedDoc(null);
+            setSummary(null);
+            setError(null);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleSelectDocument = async (doc: TLegalDocument) => {
@@ -29,9 +39,8 @@ const Home = () => {
         setSummary(null);
         setError(null);
         setIsLoading(true);
-
         try {
-            const summarizedText = "jjjj"
+            const summarizedText = doc?.summary
             setSummary(summarizedText);
         } catch (err) {
             setError(
