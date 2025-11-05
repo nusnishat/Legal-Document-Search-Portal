@@ -15,7 +15,7 @@ const Home = () => {
 
     const handleSearch = async (query: string) => {
         try {
-            const response = await fetch(`http://localhost:8000/search?query=${query}`)
+            const response = await fetch(`https://legal-document-search-portal-server.onrender.com/search?query=${query}`)
             if (!response.ok) {
                 setSearchResults([]);
                 return;
