@@ -23,7 +23,7 @@ const Searchbar = ({ onSearch, isDisabled }: SearchBarProps) => {
                         type="text"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Search legal documents (e.g., NDA, agreement, terms)..."
+                        placeholder="Search legal documents ..."
                         disabled={isDisabled}
                         className="w-full px-12 py-4 bg-white/5 text-white placeholder-gray-500 focus:outline-none transition-all duration-300 text-lg rounded-xl border border-white/10 focus:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
