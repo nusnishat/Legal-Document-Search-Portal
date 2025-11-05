@@ -1,7 +1,7 @@
 import { FiAlertCircle, FiRefreshCw } from "react-icons/fi";
 import { HiCheckCircle } from "react-icons/hi2";
 
-interface SummaryPanelProps {
+interface SummaryProps {
   summary: string | null;
   isLoading: boolean;
   error: string | null;
@@ -9,7 +9,7 @@ interface SummaryPanelProps {
 }
 
 
-const Summary = ({ summary, isLoading, error, onRetry }: SummaryPanelProps) => {
+const Summary = ({ summary, isLoading, error, onRetry }: SummaryProps) => {
 
   return (
     <div>
@@ -75,9 +75,8 @@ const Summary = ({ summary, isLoading, error, onRetry }: SummaryPanelProps) => {
                 <h3 className="text-lg font-bold text-white">Summary Generated</h3>
               </div>
             </div>
-
             <div className="flex-1 overflow-y-auto pr-4 mb-4">
-              <p className="text-gray-200 leading-relaxed text-base bg-linear-to-br from-white/5 to-transparent p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+              <p className="text-gray-200 leading-relaxed text-base bg-linear-to-br from-white/5 to-transparent p-4 rounded-xl border border-white/10">
                 {summary}
               </p>
             </div>

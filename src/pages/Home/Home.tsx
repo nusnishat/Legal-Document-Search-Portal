@@ -51,7 +51,7 @@ const Home = () => {
     };
 
     return (
-        <div className="space-y-4 py-12 mx-4 md:mx-20">
+        <div className="space-y-6 py-12 mx-4 md:mx-20">
             <HeroSection />
             <Searchbar
                 onSearch={handleSearch}

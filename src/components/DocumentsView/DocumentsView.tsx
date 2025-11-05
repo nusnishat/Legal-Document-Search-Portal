@@ -15,9 +15,14 @@ const DocumentsView = ({ hasSearched, searchResults, handleSelectDocument, selec
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-white">
-                    {hasSearched ? `Documents (${searchResults.length})` : "Ready to Search"}
-                </h2>
+                {hasSearched &&
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-linear-to-r from-pink-500 to-purple-500"></div>
+                        <h2 className="text-2xl font-bold text-white">
+                            Documents ({searchResults.length})
+                        </h2>
+                    </div>
+                }
                 {hasSearched && searchResults.length > 0 && (
                     <div className="px-3 py-1 bg-purple-700/20 text-purple-300 rounded-full text-xs font-semibold">
                         {searchResults.length} match{searchResults.length !== 1 ? "es" : ""}

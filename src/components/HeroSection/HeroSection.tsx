@@ -2,7 +2,7 @@ import { IoSparkles } from "react-icons/io5";
 
 const HeroSection = () => {
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             <div className="flex justify-center">
                 <p className="px-4 py-2 rounded-full text-sm font-semibold bg-purple-800 text-white border border-purple-500">
                     <IoSparkles className="inline me-2" />Powered by Advanced AI
