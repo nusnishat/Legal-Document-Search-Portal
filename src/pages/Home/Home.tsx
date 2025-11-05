@@ -18,6 +18,8 @@ const Home = () => {
             const response = await fetch(`https://legal-document-search-portal-server.onrender.com/search?query=${query}`)
             if (!response.ok) {
                 setSearchResults([]);
+                setSelectedDoc(null);
+                setSummary(null);
                 return;
             }
             const results = await response.json();
