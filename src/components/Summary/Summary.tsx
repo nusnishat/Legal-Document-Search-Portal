@@ -24,7 +24,7 @@ const Summary = ({ summary, isLoading, error, onRetry }: SummaryPanelProps) => {
       </div>
 
       {/* Card containing the summary panel */}
-      <div className="glass-effect shadow-2xl hover:border-white/30 transition-all duration-300 p-6 md:p-8 h-full min-h-[400px] flex flex-col rounded-2xl relative overflow-hidden">
+      <div className="border border-white/10 shadow-2xl hover:border-white/30 transition-all duration-300 p-6 md:p-8 h-full min-h-[400px] flex flex-col rounded-2xl relative overflow-hidden">
         {/* Background decorative element */}
         <div className="absolute top-0 right-0 w-40 h-40 bg-linear-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
 

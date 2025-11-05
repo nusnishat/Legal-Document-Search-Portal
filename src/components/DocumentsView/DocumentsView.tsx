@@ -1,6 +1,6 @@
+import { IoDocumentTextOutline } from "react-icons/io5";
 import type { TLegalDocument } from "../../types/types";
 import DocumentCard from "../DocumentCard/DocumentCard";
-
 
 type DocumentsViewProps = {
     hasSearched: boolean;
@@ -11,31 +11,43 @@ type DocumentsViewProps = {
 };
 
 const DocumentsView = ({ hasSearched, searchResults, handleSelectDocument, selectedDoc, isLoading }: DocumentsViewProps) => {
-    console.log(searchResults.length);
     return (
-        <div>
-            <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-linear-to-r from-purple-500 to-pink-500"></div>
-                    <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                        {hasSearched ? `Documents (${searchResults.length})` : 'Ready to Search'}
-                    </h2>
-                </div>
+        <div className="space-y-6">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-white">
+                    {hasSearched ? `Documents (${searchResults.length})` : "Ready to Search"}
+                </h2>
                 {hasSearched && searchResults.length > 0 && (
-                    <div className="px-3 py-1 bg-linear-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-500/30">
-                        <p className="text-xs text-purple-300 font-semibold">{searchResults.length} match{searchResults.length !== 1 ? 'es' : ''}</p>
+                    <div className="px-3 py-1 bg-purple-700/20 text-purple-300 rounded-full text-xs font-semibold">
+                        {searchResults.length} match{searchResults.length !== 1 ? "es" : ""}
                     </div>
                 )}
             </div>
-            {searchResults.length !== 0 &&
-                <div className="glass-effect shadow-2xl hover:border-white/30 transition-all duration-300">
-                    <div className="p-6 space-y-4 bg-linear-to-r from-purple-500/20 to-pink-500/20 rounded-lg shadow-2xl">
-                        {
-                            searchResults.map((document: TLegalDocument) => <DocumentCard key={document?.id} handleSelectDocument={handleSelectDocument} selectedDoc={selectedDoc} document={document} />)
-                        }
-                    </div>
+
+            {/* Document List */}
+            {searchResults.length > 0 ? (
+                <div className={`grid gap-4 ${isLoading ? "opacity-40 cursor-not-allowed" : ""} md:grid-cols-2 shadow-2xl p-8 border border-white/10 rounded-lg`}>
+                    {searchResults.map((doc) => (
+                        <DocumentCard
+                            key={doc.id}
+                            document={doc}
+                            selectedDoc={selectedDoc}
+                            handleSelectDocument={handleSelectDocument}
+                        />
+                    ))}
                 </div>
-            }
+            ) : hasSearched && (
+                <div className="shadow-2xl p-8 border border-white/10 rounded-lg flex justify-center items-center min-h-[300px]">
+                    <div className="flex flex-col items-center justify-center mt-10">
+                        <div className="rounded-full flex items-center justify-center">
+                            <IoDocumentTextOutline className="text-white w-8 h-8" />
+                        </div>
+                        <p className="text-gray-400 text-sm mt-3">No documents found</p>
+                    </div>
+
+                </div>
+            )}
         </div>
     );
 };

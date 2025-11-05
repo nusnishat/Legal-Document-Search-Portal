@@ -5,14 +5,7 @@ import Searchbar from '../../components/Searchbar/Searchbar';
 import DocumentsView from '../../components/DocumentsView/DocumentsView';
 import { searchDocuments } from '../../api/documents';
 import Summary from '../../components/Summary/Summary';
-
-type TLegalDocument = {
-  id: string;
-  title: string;
-  type: string;
-  content: string;
-  dateCreated: string; // you can also use Date if you want actual Date objects
-};
+import type { TLegalDocument } from '../../types/types';
 
 const Home = () => {
     const [searchResults, setSearchResults] = useState<TLegalDocument[]>([]);
@@ -32,7 +25,6 @@ const Home = () => {
     };
 
     const handleSelectDocument = async (doc: TLegalDocument) => {
-        console.log("click")
         setSelectedDoc(doc);
         setSummary(null);
         setError(null);
@@ -61,9 +53,23 @@ const Home = () => {
     return (
         <div className="space-y-4 py-12 mx-4 md:mx-20">
             <HeroSection />
-            <Searchbar onSearch={handleSearch} isDisabled={isLoading} />
-            <DocumentsView searchResults={searchResults} hasSearched={hasSearched} isLoading={isLoading} selectedDoc={selectedDoc} handleSelectDocument={handleSelectDocument} />
-            <Summary isLoading={isLoading} onRetry={handleRetry} error={error} summary={summary}/>
+            <Searchbar
+                onSearch={handleSearch}
+                isDisabled={isLoading}
+            />
+            <DocumentsView
+                searchResults={searchResults}
+                hasSearched={hasSearched}
+                isLoading={isLoading}
+                selectedDoc={selectedDoc}
+                handleSelectDocument={handleSelectDocument}
+            />
+            <Summary
+                isLoading={isLoading}
+                onRetry={handleRetry}
+                error={error}
+                summary={summary}
+            />
         </div>
     );
 };

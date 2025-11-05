@@ -9,8 +9,8 @@ const Footer = () => {
         {/* Brand */}
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded flex items-center justify-center text-white font-bold">⚖️</div>
-            <h3 className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Legal AI</h3>
+            <div className="w-8 h-8 bg-linear-to-br from-purple-500 to-pink-500 rounded flex items-center justify-center text-white font-bold">⚖️</div>
+            <h3 className="text-lg font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Legal AI</h3>
           </div>
           <p className="text-gray-400 text-sm">
             AI-powered document analysis. Summarize legal docs in seconds.
