@@ -8,7 +8,6 @@ interface SummaryProps {
   onRetry?: () => void;
 }
 
-
 const Summary = ({ summary, isLoading, error, onRetry }: SummaryProps) => {
 
   return (

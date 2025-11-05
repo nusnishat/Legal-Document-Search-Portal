@@ -1,11 +1,9 @@
-
 import { useState } from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import Searchbar from '../../components/Searchbar/Searchbar';
 import DocumentsView from '../../components/DocumentsView/DocumentsView';
 import Summary from '../../components/Summary/Summary';
 import type { TLegalDocument } from '../../types/types';
-
 
 const Home = () => {
     const [searchResults, setSearchResults] = useState<TLegalDocument[]>([]);
