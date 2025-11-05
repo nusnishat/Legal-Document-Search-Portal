@@ -31,28 +31,40 @@ const DocumentsView = ({ hasSearched, searchResults, handleSelectDocument, selec
             </div>
 
             {/* Document List */}
-            {searchResults.length > 0 ? (
-                <div className={`grid gap-4 ${isLoading ? "opacity-40 cursor-not-allowed" : ""} md:grid-cols-2 shadow-2xl p-8 border border-white/10 rounded-lg`}>
-                    {searchResults.map((doc) => (
-                        <DocumentCard
-                            key={doc.id}
-                            document={doc}
-                            selectedDoc={selectedDoc}
-                            handleSelectDocument={handleSelectDocument}
-                        />
-                    ))}
-                </div>
-            ) : hasSearched && (
-                <div className="shadow-2xl p-8 border border-white/10 rounded-lg flex justify-center items-center min-h-[300px]">
-                    <div className="flex flex-col items-center justify-center mt-10">
-                        <div className="rounded-full flex items-center justify-center">
-                            <IoDocumentTextOutline className="text-white w-8 h-8" />
+            {isLoading ? (
+                <div className="shadow-2xl p-8 border border-white/10 rounded-lg flex items-center justify-center flex-1 min-h-[300px]">
+                    <div className="text-center">
+                        <p className="text-lg font-semibold text-white mb-1">Searching Document</p>
+                        <div className="mt-6 space-y-2 w-full max-w-xs mx-auto">
+                            <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div className="h-full bg-linear-to-r from-purple-500 to-pink-500 rounded-full animate-pulse" style={{ width: "70%" }}></div>
+                            </div>
+                            <p className="text-xs text-gray-500">Processing legal document...</p>
                         </div>
-                        <p className="text-gray-400 text-sm mt-3">No documents found</p>
                     </div>
+                </div>)
+                : searchResults.length > 0 ? (
+                    <div className={`grid gap-4 ${isLoading ? "opacity-40 cursor-not-allowed" : ""} md:grid-cols-2 shadow-2xl p-8 border border-white/10 rounded-lg`}>
+                        {searchResults.map((doc) => (
+                            <DocumentCard
+                                key={doc.id}
+                                document={doc}
+                                selectedDoc={selectedDoc}
+                                handleSelectDocument={handleSelectDocument}
+                            />
+                        ))}
+                    </div>
+                ) : hasSearched && (
+                    <div className="shadow-2xl p-8 border border-white/10 rounded-lg flex justify-center items-center min-h-[300px]">
+                        <div className="flex flex-col items-center justify-center mt-10">
+                            <div className="rounded-full flex items-center justify-center">
+                                <IoDocumentTextOutline className="text-white w-8 h-8" />
+                            </div>
+                            <p className="text-gray-400 text-sm mt-3">No documents found</p>
+                        </div>
 
-                </div>
-            )}
+                    </div>
+                )}
         </div>
     );
 };

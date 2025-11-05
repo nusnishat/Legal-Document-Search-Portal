@@ -3,19 +3,18 @@ import { HiCheckCircle } from "react-icons/hi2";
 
 interface SummaryProps {
   summary: string | null;
-  isLoading: boolean;
   error: string | null;
   onRetry?: () => void;
 }
 
-const Summary = ({ summary, isLoading, error, onRetry }: SummaryProps) => {
+const Summary = ({ summary, error, onRetry }: SummaryProps) => {
 
   return (
     <div>
       <div className="flex items-center gap-2 mb-6">
         <div className="w-2 h-2 rounded-full bg-linear-to-r from-pink-500 to-purple-500"></div>
         <h2 className="text-2xl font-bold text-white">AI Summary</h2>
-        {summary && !isLoading && !error && (
+        {summary && !error && (
           <div className="ml-auto px-2 py-1 bg-linear-to-r from-green-500/20 to-emerald-500/20 rounded-full border border-green-500/30">
             <p className="text-xs text-green-300 font-semibold">Generated</p>
           </div>
@@ -26,23 +25,6 @@ const Summary = ({ summary, isLoading, error, onRetry }: SummaryProps) => {
       <div className="border border-white/10 shadow-2xl hover:border-white/30 transition-all duration-300 p-6 md:p-8 h-full min-h-[400px] flex flex-col rounded-2xl relative overflow-hidden">
         {/* Background decorative element */}
         <div className="absolute top-0 right-0 w-40 h-40 bg-linear-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
-
-        {/* Loading state */}
-        {isLoading && (
-          <div className="flex items-center justify-center flex-1">
-            <div className="text-center">
-              <p className="text-lg font-semibold text-white mb-1">Analyzing Document</p>
-              <p className="text-sm text-gray-400">Generating intelligent summary with AI...</p>
-              <div className="mt-6 space-y-2 w-full max-w-xs mx-auto">
-                <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-linear-to-r from-purple-500 to-pink-500 rounded-full animate-pulse" style={{ width: "70%" }}></div>
-                </div>
-                <p className="text-xs text-gray-500">Processing legal document...</p>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Error state */}
         {error && (
           <div className="flex items-start gap-4 p-6 bg-linear-to-br from-red-500/10 to-red-600/10 rounded-xl border border-red-500/30 backdrop-blur-xl">
@@ -64,7 +46,7 @@ const Summary = ({ summary, isLoading, error, onRetry }: SummaryProps) => {
         )}
 
         {/* Summary content */}
-        {summary && !isLoading && !error && (
+        {summary && !error && (
           <div className="flex-1 flex flex-col relative z-10">
             <div className="flex items-center mb-4">
               <div className="flex items-center gap-2">
@@ -83,7 +65,7 @@ const Summary = ({ summary, isLoading, error, onRetry }: SummaryProps) => {
         )}
 
         {/* Placeholder when nothing is selected */}
-        {!summary && !isLoading && !error && (
+        {!summary && !error && (
           <div className="flex items-center justify-center flex-1 relative z-10">
             <div className="text-center">
               <p className="text-gray-300 font-medium mb-1">Select a Document</p>

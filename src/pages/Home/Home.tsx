@@ -15,6 +15,7 @@ const Home = () => {
 
     const handleSearch = async (query: string) => {
         try {
+            setIsLoading(true);
             const response = await fetch(`https://legal-document-search-portal-server.onrender.com/search?query=${query}`)
             if (!response.ok) {
                 setSearchResults([]);
@@ -31,26 +32,27 @@ const Home = () => {
             setError(null);
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const handleSelectDocument = async (doc: TLegalDocument) => {
+        setIsLoading(true);
         setSelectedDoc(doc);
         setSummary(null);
         setError(null);
-        setIsLoading(true);
         try {
             const summarizedText = doc?.summary
             setSummary(summarizedText);
+            setIsLoading(false);
         } catch (err) {
             setError(
                 err instanceof Error
                     ? err.message
                     : 'Failed to generate summary. Please try again.'
             );
-        } finally {
-            setIsLoading(false);
-        }
+        } 
     };
 
     const handleRetry = () => {
@@ -74,7 +76,6 @@ const Home = () => {
                 handleSelectDocument={handleSelectDocument}
             />
             <Summary
-                isLoading={isLoading}
                 onRetry={handleRetry}
                 error={error}
                 summary={summary}
