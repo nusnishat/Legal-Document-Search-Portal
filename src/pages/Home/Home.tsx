@@ -1,0 +1,71 @@
+
+import { useState } from 'react';
+import HeroSection from '../../components/HeroSection/HeroSection';
+import Searchbar from '../../components/Searchbar/Searchbar';
+import DocumentsView from '../../components/DocumentsView/DocumentsView';
+import { searchDocuments } from '../../api/documents';
+import Summary from '../../components/Summary/Summary';
+
+type TLegalDocument = {
+  id: string;
+  title: string;
+  type: string;
+  content: string;
+  dateCreated: string; // you can also use Date if you want actual Date objects
+};
+
+const Home = () => {
+    const [searchResults, setSearchResults] = useState<TLegalDocument[]>([]);
+    const [selectedDoc, setSelectedDoc] = useState<TLegalDocument | null>(null);
+    const [summary, setSummary] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [hasSearched, setHasSearched] = useState(false);
+
+    const handleSearch = (query: string) => {
+        setHasSearched(true);
+        const results = searchDocuments(query);
+        setSearchResults(results);
+        setSelectedDoc(null);
+        setSummary(null);
+        setError(null);
+    };
+
+    const handleSelectDocument = async (doc: TLegalDocument) => {
+        console.log("click")
+        setSelectedDoc(doc);
+        setSummary(null);
+        setError(null);
+        setIsLoading(true);
+
+        try {
+            const summarizedText = "jjjj"
+            setSummary(summarizedText);
+        } catch (err) {
+            setError(
+                err instanceof Error
+                    ? err.message
+                    : 'Failed to generate summary. Please try again.'
+            );
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleRetry = () => {
+        if (selectedDoc) {
+            handleSelectDocument(selectedDoc);
+        }
+    };
+
+    return (
+        <div className="space-y-4 py-12 mx-4 md:mx-20">
+            <HeroSection />
+            <Searchbar onSearch={handleSearch} isDisabled={isLoading} />
+            <DocumentsView searchResults={searchResults} hasSearched={hasSearched} isLoading={isLoading} selectedDoc={selectedDoc} handleSelectDocument={handleSelectDocument} />
+            <Summary isLoading={isLoading} onRetry={handleRetry} error={error} summary={summary}/>
+        </div>
+    );
+};
+
+export default Home;
