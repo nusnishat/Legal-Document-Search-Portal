@@ -16,7 +16,7 @@ const Home = () => {
     const handleSearch = async (query: string) => {
         try {
             setIsLoading(true);
-            const response = await fetch(`https://legal-document-search-portal-server.onrender.com/search?query=${query}`)
+            const response = await fetch(`https://legal-document-search-portal-server.onrender.com/?query=${query}`)
             if (!response.ok) {
                 setSearchResults([]);
                 setSelectedDoc(null);
@@ -38,7 +38,6 @@ const Home = () => {
     };
 
     const handleSelectDocument = async (doc: TLegalDocument) => {
-        setIsLoading(true);
         setSelectedDoc(doc);
         setSummary(null);
         setError(null);

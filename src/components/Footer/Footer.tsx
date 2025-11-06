@@ -10,7 +10,7 @@ const Footer = () => {
         <div>
           <div className="flex items-center gap-2 mb-2">
             <div className="w-8 h-8 bg-linear-to-br from-purple-500 to-pink-500 rounded flex items-center justify-center text-white font-bold">⚖️</div>
-            <h3 className="text-lg font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Legal AI</h3>
+            <h3 className="text-lg font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Legal Doc AI</h3>
           </div>
           <p className="text-gray-400 text-sm">
             AI-powered document analysis. Summarize legal docs in seconds.
@@ -47,7 +47,7 @@ const Footer = () => {
           <a href="#email" className="text-gray-400 hover:text-pink-400"><FaEnvelope size={20} /></a>
         </div>
         <p className="text-gray-400 text-sm text-center md:text-right">
-          &copy; 2024 Legal AI. Made with <FaHeart className="inline text-red-500" /> by Nusrat Jahan Nishat
+          &copy; 2024 Legal Doc AI. Made with <FaHeart className="inline text-red-500" /> by Nusrat Jahan Nishat
         </p>
       </div>
     </footer>

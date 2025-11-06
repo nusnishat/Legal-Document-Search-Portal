@@ -10,7 +10,7 @@ const Header = () => {
                     </div>
                     <div>
                         <h1 className="text-xl font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                            Legal AI
+                            Legal Doc AI
                         </h1>
                         <p className="text-xs text-purple-300">Smart Document Analysis</p>
                     </div>
