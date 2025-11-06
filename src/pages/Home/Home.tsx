@@ -24,9 +24,8 @@ const Home = () => {
                 return;
             }
             const results = await response.json();
-            console.log(results)
             setHasSearched(true);
-            setSearchResults(results);
+            setSearchResults(results?.results);
             setSelectedDoc(null);
             setSummary(null);
             setError(null);
